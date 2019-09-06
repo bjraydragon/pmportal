@@ -1,0 +1,16 @@
+<!--pages/menu/menu.wxml-->
+<view class="page">
+    <view class="page__hd">
+        <view class="page__desc">项目菜单</view>
+    </view>
+    <view class="page__bd">
+        <view class="weui-grids">
+            <block wx:for="{{grids}}" data-index="{{index}}" bindtap="tapGridItem" wx:key="*this">
+                <navigator url="../prjlist/prjlist" class="weui-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon" src="../../images/menu.png" />
+                    <view class="weui-grid__label">{{item.name}}</view>
+                </navigator>
+            </block>
+        </view>
+    </view>
+</view>
