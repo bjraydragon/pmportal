@@ -1,7 +1,7 @@
 {
   "pages": [
+  "pages/menu/menu",
     "pages/login/login",
-    "pages/menu/menu",
     "pages/prjlist/prjlist",
     "pages/index/index",
     "pages/logs/logs",
@@ -10,7 +10,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "PMPortal",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

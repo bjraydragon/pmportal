@@ -28,8 +28,9 @@ Page({
   },
   formSubmit: function (e) {
     wx.showLoading({
-      title: '登录中...',
+      // title: '登录中...',
     })
+     //跳转页面
     wx.navigateTo({
       url: '../menu/menu',
     })

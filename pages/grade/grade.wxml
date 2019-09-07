@@ -1,2 +1,35 @@
-<!--pages/grade/grade.wxml-->
-<text>pages/grade/grade.wxml</text>
+<view class="page">
+  <view class="page__hd">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">打分进度</view>
+      <view class="weui-cell__ft">{{2}}/{{ratingInstance.form.questions.length}}</view>
+    </view>
+    
+    <view class="weui-article__h2">{{ratingInstance.project.description}}</view>
+    <view class="thin-line"></view>
+    <!-- 题目 -->
+    <view wx:for="{{ratingInstance.form.questions}}">
+    <text>{{item.questionText}}</text>
+    <!-- <radio-group  class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{ratingInstance.form.questions[0].options}}" vx:if="{{commentRequired}}">
+    <radio value="{{item.score}}" checked="{{item.checked}}"/>{{item.optionText}}
+  </label>
+</radio-group>
+<view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em" />
+                    <view class="weui-textarea-counter">0/200</view>
+                </view>
+            </view>
+        </view> -->
+        </view>
+        <view class="button-sp-area">
+            <button class="weui-btn pre-btn"   type="default" >previous</button>
+            <button class="weui-btn sub-btn"  type="primary" >submit</button>
+            <button class="weui-btn next-btn"  type="default" 
+            bindtap="bindButtonTap" data-cr='{{ratingInstance.form.questions[0].options[0].commentRequired}}'>next</button>
+        </view>
+       
+  </view>
+</view>

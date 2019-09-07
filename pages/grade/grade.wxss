@@ -1,1 +1,37 @@
 /* pages/grade/grade.wxss */
+.thin-line{
+  width: 90vw;
+  height: 0.5vh;
+  background-color: rgb(77, 58, 58);
+  margin-top: 10px;
+}
+.button-sp-area{
+ display: flex;
+ justify-content: center; 
+ align-items: center;
+ width: 100vw;
+ height: 30vh;
+}
+.pre-btn{
+  width: 30vw;
+  height: 8vh;
+  margin-top: 15px;
+}
+.next-btn{
+  width: 30vw;
+  height: 8vh;
+}
+.sub-btn{
+  width: 30vw;
+  height: 8vh;
+}
+.radio{
+  display:block;
+}
+.weui-cell{
+  margin-top: 20px;
+  border: 1px gray solid;
+}
+.radio-group{
+  
+}
