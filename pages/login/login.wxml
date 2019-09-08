@@ -2,7 +2,7 @@
 
 <view class="container">
   <view class="login-icon">
-    <image class="login-icon" src="/images/logo.jpg"></image>
+    <image class="login-icon" src="/images/logo.png"></image>
   </view>
   <view class="login-from">
     <form bindsubmit="formSubmit" class='form'>
@@ -11,7 +11,7 @@
         <view class="weui-cell weui-cell_input">
           <image class="nameImage" src="/images/name.png"></image>
           <view class="weui-cell__bd">
-            <input class="weui-input" name="no" bindinput="noinput" value='{{no}}' placeholder="请输入姓名"/>
+            <input class="weui-input" name="no" bindinput="noinput" value='{{no}}' placeholder="请输入用户名"/>
           </view>
         </view>
       </view>

@@ -1,7 +1,7 @@
 {
-  "pages": [
-    "pages/menu/menu",
-    "pages/login/login",
+  "pages": [    
+    "pages/menu/menu",    
+    "pages/login/login",       
     "pages/grade/grade",
     "pages/prjlist/prjlist",
     "pages/index/index",

@@ -11,20 +11,18 @@
     <view class="thin-line"></view>
     <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].enText}}</text>
     <!-- 题目 -->
-    <radio-group class="radio-group" bindchange="radioChange">
+    <radio-group class="radio-group" bindchange="radioChange" >
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}" vx:if="{{commentRequired}}">
-        <radio value="{{item.score}}" checked="{{item.checked}}" />{{item.enText}}
+        <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.enText}}
       </label>
     </radio-group>
-    
-
     <textarea class="weui-textarea option-comment" placeholder="comment" placeholder-style="color:red;"  />
 </scroll-view>      
 
     <view class="button-sp-area">
       <button class="pre-btn" bindtap="bindButtonTapPrev">previous</button>
       <button class="sub-btn" bindtap="bindButtonTapSubmit">submit</button>
-      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}'>next</button>
+      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">next</button>
     </view>
 
 
