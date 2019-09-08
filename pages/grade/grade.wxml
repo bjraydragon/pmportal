@@ -11,7 +11,7 @@
     <view class="thin-line"></view>
     <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].enText}}</text>
     <!-- 题目 -->
-    <radio-group class="radio-group" bindchange="radioChange" data-optionId="{{item.id}}">
+    <radio-group class="radio-group" bindchange="radioChange" >
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}" vx:if="{{commentRequired}}">
         <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.enText}}
       </label>

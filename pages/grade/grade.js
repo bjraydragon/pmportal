@@ -29,9 +29,6 @@ Page({
       alert("请填写comments！");
       return false;
     }    
-    userAnswer.get(this.questionIndex).userInstanceId = this.data.gradeInstance.ratingInstance.userInstanceId
-    console.log("instanceId===" + this.data.gradeInstance.ratingInstance.userInstanceId );
-    console.log("===========" + JSON.stringifyuserAnswer.get(this.questionIndex));
   },
 
   bindButtonTapPrev: function (event) {
@@ -92,12 +89,11 @@ Page({
   },
 
   radioChange:function(e){
-    var optionId = e.currentTarget.dataset.optionId;
-    console.log("userAnswers====" + JSON.stringify(this.data.gradeInstance.ratingInstance.userAnswers) );
-    this.data.gradeInstance.ratingInstance.userAnswers.get(this.data.questionIndex).optionId = optionId;
-
-    console.log("optionId===" + this.data.gradeInstance.ratingInstance.userAnswers.get(this.data.questionIndex).optionId);
-    console.log("radioChange===========" + JSON.stringifyuserAnswer.get(this.questionIndex));
+    var optionId = e.detail.value[0];
+    var answerObj = this.data.gradeInstance.userAnswers;
+    var value = answerObj['' + (this.data.questionIndex + 1)+''];
+    value.optionId = optionId;
+    value.userInstanceId = this.data.gradeInstance.instanceId
   },
 
   /**
@@ -176,14 +172,81 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    console.log("Enter onHide =====" );
+    //构造提交参数
+    var userAnswers = {};
+    //向服务器提交答题情况
+    var ctoken = wx.getStorageSync('ctoken')
+    if (ctoken) {
+      wx.request({
+        url: getApp().globalData.restUrl + '/rating/save',
+        data: { "userAnswers": this.data.gradeInstance.ratingInstance.userAnswers },
+        header: {
+          CTOKEN: ctoken
+        },
+        method: 'POST',
+        success: function (res) {
+          console.log("save====="+JSON.stringify(res.data));
+          if (res.statusCode == 500) {
+            wx.showToast({
+              title: res.errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
+          } else if (res.code == 200) {
+            
+            wx.showToast({
+              title: '恭喜您完成打分',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
-
+  onUnload: function() {    
+    //构造提交参数
+    var userAnswers = {};
+    //向服务器提交答题情况
+    var ctoken = wx.getStorageSync('ctoken')    
+    if (ctoken) {
+      wx.request({
+        url: getApp().globalData.restUrl + '/rating/save',
+        data: { "userAnswers": this.data.gradeInstance.userAnswers },
+        header: {
+          CTOKEN: ctoken
+        },
+        method: 'POST',
+        success: function (res) {          
+          if (res.statusCode == 500) {
+            wx.showToast({
+              title: res.errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
+          } else if (res.code == 200) {
+            wx.showToast({
+              title: '恭喜您完成打分',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
   },
 
   /**
