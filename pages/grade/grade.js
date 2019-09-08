@@ -10,92 +10,6 @@ Page({
     gradeInstance: {}   
   },
 
-  bindButtonTapNext: function(event) {
-    var commentRequired = event.currentTarget.dataset.cr
-    console.log("参数=" + commentRequired);
-    if (this.data.questionIndex == this.data.gradeInstance.ratingInstance.form.questions.length) {
-      wx.showToast({
-        title: '已到最后',
-        icon: 'none',
-        duration: 2000
-      })
-      return;
-    }
-    this.setData({
-      questionIndex:this.data.questionIndex+1
-    })
-    this.questionIndex
-    if (commentRequired == 1) {
-      alert("请填写comments！");
-      return false;
-    }    
-  },
-
-  bindButtonTapPrev: function (event) {
-    var commentRequired = event.currentTarget.dataset.cr
-    console.log("参数=" + commentRequired);
-    if (this.data.questionIndex==0){
-      wx.showToast({
-        title: '已经是第一题',
-        icon: 'none',
-        duration: 2000
-      })
-      return;
-    }
-    this.setData({
-      questionIndex: this.data.questionIndex - 1
-    })
-    this.questionIndex
-    if (commentRequired == 1) {
-      alert("请填写comments！");
-      return;
-    }
-  },
-
-  bindButtonTapSubmit: function (event) {
-    //构造提交参数
-    var userAnswers = {};
-    //向服务器提交答题情况
-    var ctoken = wx.getStorageSync('ctoken')
-    if (ctoken){
-      wx.request({
-        url: getApp().globalData.restUrl + '/rating/submit',
-        data: {"userAnswers": this.data.gradeInstance.ratingInstance.userAnswers},
-        header:{
-          CTOKEN: ctoken
-        },
-        method: 'POST',
-        success: function (res) {
-          if (res.statusCode == 500) {
-            wx.showToast({
-              title: res.errorMsg,
-              icon: 'none',
-              duration: 2000
-            })
-          }else if(res.code==200){
-            wx.showToast({
-              title: '恭喜您完成打分',
-              icon: 'none',
-              duration: 2000
-            })
-          }
-        }
-      })
-    }else{
-      wx.navigateTo({
-        url: '../login/login',
-      })
-    } 
-  },
-
-  radioChange:function(e){
-    var optionId = e.detail.value[0];
-    var answerObj = this.data.gradeInstance.userAnswers;
-    var value = answerObj['' + (this.data.questionIndex + 1)+''];
-    value.optionId = optionId;
-    value.userInstanceId = this.data.gradeInstance.instanceId
-  },
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -115,9 +29,15 @@ Page({
     wx.showLoading({
       title: '加载中',
     })
+
+let projectid=1;
+    if (options.projectid!=undefined){
+      projectid = options.projectid;
+    }
+    console.log("projectid:"+projectid)
     
     wx.request({
-      url: getApp().globalData.restUrl + `/rating/${1}`, //商品列表
+      url: getApp().globalData.restUrl + `/rating/${projectid}`, //商品列表
       header: {
         CTOKEN: ctoken
       },
@@ -269,5 +189,102 @@ Page({
   onShareAppMessage: function() {
 
   },
+
+  bindButtonTapNext: function (event) {
+    var commentRequired = event.currentTarget.dataset.cr
+    console.log("参数=" + commentRequired);
+    if (this.data.questionIndex+1 == this.data.gradeInstance.ratingInstance.form.questions.length) {
+      wx.showToast({
+        title: '已到最后',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    this.setData({
+      questionIndex: this.data.questionIndex + 1
+    })
+    this.questionIndex
+    if (commentRequired == 1) {
+      alert("请填写comments！");
+      return false;
+    }
+  },
+
+  bindButtonTapPrev: function (event) {
+    var commentRequired = event.currentTarget.dataset.cr
+    console.log("参数=" + commentRequired);
+    if (this.data.questionIndex == 0) {
+      wx.showToast({
+        title: '已经是第一题',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    this.setData({
+      questionIndex: this.data.questionIndex - 1
+    })
+    this.questionIndex
+    if (commentRequired == 1) {
+      alert("请填写comments！");
+      return;
+    }
+  },
+
+  bindButtonTapSubmit: function (event) {
+    //构造提交参数
+    var userAnswers = {};
+    //先判断题目是否完全答完,如果没有则提示请答完再提交
+    //先简单判断一下
+    if (this.data.questionIndex < 12) {
+      wx.showToast({
+        title: '请完成所有题目再提交!',
+        icon: 'none',
+        duration: 4000
+      })
+      return;
+    }
+    //向服务器提交答题情况
+    var ctoken = wx.getStorageSync('ctoken')
+    if (ctoken) {
+      wx.request({
+        url: getApp().globalData.restUrl + '/rating/submit',
+        data: { "userAnswers": this.data.gradeInstance.ratingInstance.userAnswers },
+        header: {
+          CTOKEN: ctoken
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.statusCode == 500) {
+            wx.showToast({
+              title: res.errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
+          } else if (res.code == 200) {
+            wx.showToast({
+              title: '恭喜您完成打分',
+              icon: 'none',
+              duration: 5000
+            })
+          }
+        }
+      })
+    } else {
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    }
+  },
+
+  radioChange: function (e) {
+    var optionId = e.detail.value[0];
+    var answerObj = this.data.gradeInstance.userAnswers;
+    var value = answerObj['' + (this.data.questionIndex + 1) + ''];
+    value.optionId = optionId;
+    value.userInstanceId = this.data.gradeInstance.instanceId
+  },
+
 
 })

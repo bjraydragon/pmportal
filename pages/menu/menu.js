@@ -7,7 +7,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    grids: []
+    grids: [],
+    images: [
+      "../../images/menu.png", 
+      "../../images/menu2.png", 
+      "../../images/menu3.png",
+    ]
   },
 
   /**
@@ -122,9 +127,20 @@ Page({
 
   },
 
-  //用户点击gird item
-  tapGridItem(event){
-    let index = parseInt(event.currentTarget.dataset.index);
-    console.log(`tapGridItem:${index}`)
+  bindMenuTap(event){
+    let menuId = event.currentTarget.dataset.menuid;
+    console.log(menuId);
+    if (menuId =="WXDEALLIST"){
+      wx.navigateTo({
+        url: '../prjlist/prjlist',
+      })
+    }
+    else{
+      wx.showToast({
+        title: '即将上线的消息/页面',
+        icon: 'none',
+        duration: 2000
+      })
+    }
   }
 })

@@ -1,7 +1,8 @@
 /* pages/menu/menu.wxss */
 .menu-grid{
-  width: 50vw;
-  height: 50vw;
+  width: 49vw;
+  height: 49vw;
+  margin-left:0.5vw;
 }
 .menu-icon{
   width: 30vw;

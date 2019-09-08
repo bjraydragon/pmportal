@@ -5,10 +5,10 @@
     </view> -->
     <view class="page__bd">
         <view class="weui-grids">
-            <block wx:for="{{grids}}" data-index="{{index}}" bindtap="tapGridItem" wx:key="*this">
-                <navigator url="../prjlist/prjlist" class="weui-grid menu-grid" hover-class="weui-grid_active">
-                    <image class="weui-grid__icon menu-icon" src="../../images/menu.png" />
-                    <view class="weui-grid__label">{{item.enLabel}}</view>
+            <block wx:for="{{grids}}" data-index="{{index}}" wx:key="*this">
+                <navigator data-menuid="{{item.id}}" catchtap='bindMenuTap' url="" class="weui-grid menu-grid" hover-class="weui-grid_active">
+                    <image class="weui-grid__icon menu-icon" src="{{images[index%3]}}" />
+                    <view class="weui-grid__label">{{item.cnLabel}}</view>
                 </navigator>
             </block>
         </view>

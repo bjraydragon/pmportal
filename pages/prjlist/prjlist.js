@@ -11,6 +11,12 @@ Page({
         "instanceId": 1,
         "stage": "PB"
       }
+    ],
+
+    images: [
+      "../../images/project.png",
+      "../../images/project2.png",
+      "../../images/project3.png",
     ]
   },
 
@@ -105,5 +111,15 @@ Page({
    */
   onShareAppMessage: function () {
 
-  }
+  },
+   //点击列表对应项目
+   bindPrjlistTap:function(event){
+     let projectid = event.currentTarget.dataset.projectid;
+     console.log("bindprjlisttap:" + projectid);
+     wx.navigateTo({
+       url: `../grade/grade?projectid=${projectid}`,
+     })
+   } 
+
+
 })

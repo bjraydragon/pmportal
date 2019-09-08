@@ -1,5 +1,5 @@
 <view class="page">
-<view class="page__hd">
+<view class="page__hd" wx:if="{{gradeInstance.ratingInstance}}">
 
     <view class="grade-header">
       <view class="grade-header-left">打分进度</view>
@@ -9,20 +9,20 @@
 <scroll-view scroll-y style="height: 70%;" class="carsale">
     <text class="grade-title-name" decode='true'>{{gradeInstance.ratingInstance.form.name}}</text>
     <view class="thin-line"></view>
-    <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].enText}}</text>
+    <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].cnText}}</text>
     <!-- 题目 -->
     <radio-group class="radio-group" bindchange="radioChange" >
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}" vx:if="{{commentRequired}}">
-        <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.enText}}
+        <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.cnText}}
       </label>
     </radio-group>
-    <textarea class="weui-textarea option-comment" placeholder="comment" placeholder-style="color:red;"  />
+    <textarea class="weui-textarea option-comment" placeholder="说明" placeholder-style="color:black;"  />
 </scroll-view>      
 
     <view class="button-sp-area">
-      <button class="pre-btn" bindtap="bindButtonTapPrev">previous</button>
-      <button class="sub-btn" bindtap="bindButtonTapSubmit">submit</button>
-      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">next</button>
+      <button class="pre-btn" bindtap="bindButtonTapPrev">上一题</button>
+      <button class="sub-btn" bindtap="bindButtonTapSubmit">提交</button>
+      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">下一题</button>
     </view>
 
 

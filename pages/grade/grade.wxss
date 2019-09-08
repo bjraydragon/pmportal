@@ -15,7 +15,7 @@
   justify-content: flex-start;
   width:100vw;
   height:5vh;
-  background-color: rgb(7, 224, 80);
+  background-color: rgb(215, 247, 37);
 }
 
 .grade-header-left{
@@ -43,6 +43,7 @@
 
 .grade-title-question{
   font-size: 4vw;
+  margin-left:3vw;
 }
 
 .button-sp-area{
@@ -57,6 +58,7 @@
   align-items: center; 
   width: 30vw;
   height: 8vh;
+  background-color: rgb(215, 247, 37);
 }
 .next-btn{
   display: flex;
@@ -64,6 +66,7 @@
   align-items: center; 
   width: 30vw;
   height: 8vh;
+  background-color: rgb(215, 247, 37);
 }
 .sub-btn{
   display: flex;
@@ -71,6 +74,8 @@
   align-items: center; 
   width: 30vw;
   height: 8vh;
+  background-color: #d13737;
+  color:white;
 }
 .radio{
   display:block;
