@@ -28,7 +28,10 @@ Page({
     if (commentRequired == 1) {
       alert("请填写comments！");
       return false;
-    }
+    }    
+    userAnswer.get(this.questionIndex).userInstanceId = this.data.gradeInstance.ratingInstance.userInstanceId
+    console.log("instanceId===" + this.data.gradeInstance.ratingInstance.userInstanceId );
+    console.log("===========" + JSON.stringifyuserAnswer.get(this.questionIndex));
   },
 
   bindButtonTapPrev: function (event) {
@@ -36,7 +39,7 @@ Page({
     console.log("参数=" + commentRequired);
     if (this.data.questionIndex==0){
       wx.showToast({
-        title: '已到最前',
+        title: '已经是第一题',
         icon: 'none',
         duration: 2000
       })
@@ -53,7 +56,48 @@ Page({
   },
 
   bindButtonTapSubmit: function (event) {
+    //构造提交参数
+    var userAnswers = {};
     //向服务器提交答题情况
+    var ctoken = wx.getStorageSync('ctoken')
+    if (ctoken){
+      wx.request({
+        url: getApp().globalData.restUrl + '/rating/submit',
+        data: {"userAnswers": this.data.gradeInstance.ratingInstance.userAnswers},
+        header:{
+          CTOKEN: ctoken
+        },
+        method: 'POST',
+        success: function (res) {
+          if (res.statusCode == 500) {
+            wx.showToast({
+              title: res.errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
+          }else if(res.code==200){
+            wx.showToast({
+              title: '恭喜您完成打分',
+              icon: 'none',
+              duration: 2000
+            })
+          }
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../login/login',
+      })
+    } 
+  },
+
+  radioChange:function(e){
+    var optionId = e.currentTarget.dataset.optionId;
+    console.log("userAnswers====" + JSON.stringify(this.data.gradeInstance.ratingInstance.userAnswers) );
+    this.data.gradeInstance.ratingInstance.userAnswers.get(this.data.questionIndex).optionId = optionId;
+
+    console.log("optionId===" + this.data.gradeInstance.ratingInstance.userAnswers.get(this.data.questionIndex).optionId);
+    console.log("radioChange===========" + JSON.stringifyuserAnswer.get(this.questionIndex));
   },
 
   /**

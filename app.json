@@ -1,8 +1,9 @@
 {
   "pages": [
-    "pages/menu/menu",
-    "pages/login/login",
     "pages/grade/grade",
+    "pages/login/login",
+    "pages/menu/menu",    
+    
     "pages/prjlist/prjlist",
     "pages/index/index",
     "pages/logs/logs"
