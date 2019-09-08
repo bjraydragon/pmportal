@@ -1,35 +1,32 @@
 <view class="page">
-  <view class="page__hd">
-    <view class="weui-cell">
-      <view class="weui-cell__bd">打分进度</view>
-      <view class="weui-cell__ft">{{2}}/{{ratingInstance.form.questions.length}}</view>
+<view class="page__hd">
+
+    <view class="grade-header">
+      <view class="grade-header-left">打分进度</view>
+      <view class="grade-header-right">{{questionIndex+1}}/{{gradeInstance.ratingInstance.form.questions.length}}</view>
     </view>
-    
-    <view class="weui-article__h2">{{ratingInstance.project.description}}</view>
+
+<scroll-view scroll-y style="height: 70%;" class="carsale">
+    <text class="grade-title-name" decode='true'>{{gradeInstance.ratingInstance.form.name}}</text>
     <view class="thin-line"></view>
+    <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].enText}}</text>
     <!-- 题目 -->
-    <view wx:for="{{ratingInstance.form.questions}}">
-    <text>{{item.questionText}}</text>
-    <!-- <radio-group  class="radio-group" bindchange="radioChange">
-  <label class="radio" wx:for="{{ratingInstance.form.questions[0].options}}" vx:if="{{commentRequired}}">
-    <radio value="{{item.score}}" checked="{{item.checked}}"/>{{item.optionText}}
-  </label>
-</radio-group>
-<view class="weui-cells weui-cells_after-title">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请输入文本" style="height: 3.3em" />
-                    <view class="weui-textarea-counter">0/200</view>
-                </view>
-            </view>
-        </view> -->
-        </view>
-        <view class="button-sp-area">
-            <button class="weui-btn pre-btn"   type="default" >previous</button>
-            <button class="weui-btn sub-btn"  type="primary" >submit</button>
-            <button class="weui-btn next-btn"  type="default" 
-            bindtap="bindButtonTap" data-cr='{{ratingInstance.form.questions[0].options[0].commentRequired}}'>next</button>
-        </view>
-       
-  </view>
+    <radio-group class="radio-group" bindchange="radioChange">
+      <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}" vx:if="{{commentRequired}}">
+        <radio value="{{item.score}}" checked="{{item.checked}}" />{{item.enText}}
+      </label>
+    </radio-group>
+    
+
+    <textarea class="weui-textarea option-comment" placeholder="comment" placeholder-style="color:red;"  />
+</scroll-view>      
+
+    <view class="button-sp-area">
+      <button class="pre-btn" bindtap="bindButtonTapPrev">previous</button>
+      <button class="sub-btn" bindtap="bindButtonTapSubmit">submit</button>
+      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}'>next</button>
+    </view>
+
+
+</view>
 </view>

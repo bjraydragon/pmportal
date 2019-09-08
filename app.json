@@ -1,11 +1,11 @@
 {
   "pages": [
-  "pages/menu/menu",
+    "pages/menu/menu",
     "pages/login/login",
+    "pages/grade/grade",
     "pages/prjlist/prjlist",
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/grade/grade"
+    "pages/logs/logs"
   ],
   "window": {
     "backgroundTextStyle": "light",

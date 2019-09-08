@@ -8,7 +8,7 @@
             <block wx:for="{{grids}}" data-index="{{index}}" bindtap="tapGridItem" wx:key="*this">
                 <navigator url="../prjlist/prjlist" class="weui-grid menu-grid" hover-class="weui-grid_active">
                     <image class="weui-grid__icon menu-icon" src="../../images/menu.png" />
-                    <view class="weui-grid__label">{{item.cnLabel}}</view>
+                    <view class="weui-grid__label">{{item.enLabel}}</view>
                 </navigator>
             </block>
         </view>

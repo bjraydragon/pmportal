@@ -1,37 +1,97 @@
 /* pages/grade/grade.wxss */
-.thin-line{
-  width: 90vw;
-  height: 0.5vh;
-  background-color: rgb(77, 58, 58);
-  margin-top: 10px;
+
+.carsale {
+  display: flex;
+  width: 100vw;
+  height:70vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  font-size: 4vw;
 }
+
+.grade-header{
+  display:flex;
+  justify-content: flex-start;
+  width:100vw;
+  height:5vh;
+  background-color: rgb(7, 224, 80);
+}
+
+.grade-header-left{
+  margin-left:2vw;
+}
+
+.grade-header-right{
+  margin-left:auto;
+  margin-right:2vh;
+}
+
+.grade-title-name{
+  font-size: 4vw;
+  font-weight:600;
+  margin-left:3vw;
+}
+
+.thin-line{
+  width: 96vw;
+  height: 0.2vh;
+  background-color: rgb(179, 173, 173);
+  margin-top: 1vh;
+  margin-left:2vw;
+}
+
+.grade-title-question{
+  font-size: 4vw;
+}
+
 .button-sp-area{
  display: flex;
  justify-content: center; 
- align-items: center;
  width: 100vw;
- height: 30vh;
+ margin-top:2vh;
 }
 .pre-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
   width: 30vw;
   height: 8vh;
-  margin-top: 15px;
 }
 .next-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
   width: 30vw;
   height: 8vh;
 }
 .sub-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
   width: 30vw;
   height: 8vh;
 }
 .radio{
   display:block;
+   margin-top:3vh;
 }
-.weui-cell{
-  margin-top: 20px;
-  border: 1px gray solid;
-}
+
 .radio-group{
-  
+  margin-left:3vw;
+}
+
+.radio-single{
+  margin-top:3vh;
+}
+
+.option-comment{
+  margin-top:2vh;
+  margin-left:2vw;
+  margin-right:2vw;
+  width:94vw;
+  height:20vh;
+  background-color: rgb(224, 221, 221);
+  padding: 10rpx;
+  font-size: 32rpx;
 }

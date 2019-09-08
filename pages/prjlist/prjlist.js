@@ -18,7 +18,44 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this;
+    //get rating
+    let ctoken = '';
+    try {
+      var value = wx.getStorageSync('ctoken')
+      if (value) {
+        ctoken = value;
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+    wx.request({
+      url: getApp().globalData.restUrl + '/rating', //商品列表
+      header: {
+        CTOKEN: ctoken
+      },
+      data: {},
+      success: function (res) {
+        if (res.statusCode == 401) {
+          wx.hideLoading()
+          wx.navigateTo({
+            url: '../login/login',
+          })
+        }
+        else {
+          //绑定菜单数据
+          console.log('prjlist request:' + JSON.stringify(res.data));
+          var newList = [];
+          res.data.map(function (item) {
+            newList.push(item);
+          });
+          that.setData({
+            projectList: newList
+          })
+          wx.hideLoading()
+        }
+      }
+    })
   },
 
   /**

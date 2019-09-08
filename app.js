@@ -10,6 +10,7 @@ App({
     wx.login({
       success: res => {
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
+        this.globalData.jscode=res.code;
       }
     })
     // 获取用户信息
@@ -33,7 +34,28 @@ App({
       }
     })
   },
+
+  //从字符串中分离EN和CN
+  //从多语言字符串中获取CN/EN到数组中
+  getCNAndEn: function (questionStr) {
+    var results = [];
+    let pos = questionStr.indexOf("{CN}");
+    //如果没有,则en和cn都一样
+    if (pos < 0) {
+      results.push(questionStr);
+      results.push(questionStr);
+    }
+    let enString = questionStr.substring(0, pos);
+    let cnString = questionStr.substring(pos + 4, questionStr.length);
+    console.log(`en:${enString} cn:${cnString}`);
+    results.push(enString);
+    results.push(cnString);
+    return results;
+  },
+
   globalData: {
-    userInfo: null
+    userInfo: null,
+    restUrl: "https://wxapp-test.cdhfund.com",
+    jscode:""
   }
 })

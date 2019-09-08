@@ -1,744 +1,166 @@
 // pages/grade/grade.js
+const app=getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    "instanceId": 1,
-    "ratingInstance": {
-      "id": 1,
-      "project": {
-        "id": "3E158A75D84747C8832920E5C0B3D2ED",
-        "projectCode": "Aluminum",
-        "description": "<p>The target is the only rare-earth industry platform in Guangxi with #2&nbsp; national excavation quota.&nbsp;</p>",
-        "accountId": "46162169A46D4909984E3C48A576FC8C",
-        "lastUpdateTime": "2019-05-23T13:12:07",
-        "lastModUser": "jxhe",
-        "creationTime": "2019-05-23T13:12:07",
-        "confidentialLevel": "N",
-        "stage": 30,
-        "stageLabel": "Post-PB",
-        "sourceType": "PRO",
-        "bizLine": "PE",
-        "teamMembers": "Jiaxin He,Minfeng Wu,Xiaojue Cao,",
-        "maxMember": 3
-      },
-      "stage": "PB",
-      "status": 0,
-      "form": {
-        "id": 1,
-        "name": "PE Rating",
-        "questions": [
-          {
-            "id": 1,
-            "questionText": "1.How’s the sector trend and sector growth of the Company?{CN}1.项目所处的行业趋势及增长性如何？（4分为行业整体增长有明确吸引力，1分反之）",
-            "type": 0,
-            "disIndex": 10,
-            "options": [
-              {
-                "id": 1,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 2,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 3,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 4,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 5,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 2,
-            "questionText": "2.How’s the regulatory, legal and compliance risk of this Deal?{CN}2.项目的政策、法律及合规风险大小？（4分为政策鼓励/或法律合规风险很低，1分为政策风险很大）",
-            "type": 0,
-            "disIndex": 20,
-            "options": [
-              {
-                "id": 6,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 7,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 8,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 9,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 10,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 3,
-            "questionText": "3.Would you think this Deal’s background and transaction logics are clear, transparent and reasonable?{CN}3.项目背景及交易逻辑是否清晰、透明、合理？（4分为清晰合理，1分为缺乏清晰合理性）",
-            "type": 0,
-            "disIndex": 30,
-            "options": [
-              {
-                "id": 11,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 12,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 13,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 14,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 15,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 4,
-            "questionText": "4.Would you think the transaction plan is realistic and highly doable?{CN}4.项目方案可操作性（4分为操作性强，1分为可操作性差）",
-            "type": 0,
-            "disIndex": 40,
-            "options": [
-              {
-                "id": 16,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 17,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 18,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 19,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 20,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 5,
-            "questionText": "5.Would you think the exit plan is realistic and highly doable?{CN}5.退出方案可操作性及确定性程度？（4分为高，1分为低）",
-            "type": 0,
-            "disIndex": 50,
-            "options": [
-              {
-                "id": 21,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 22,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 23,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 24,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 25,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 6,
-            "questionText": "6.Would you think the valuation is reasonable? Would you think the return forecast would meet the target? {CN}6.投资估值是否合理，回报是否有望达标，达标的概率是否高？",
-            "type": 0,
-            "disIndex": 60,
-            "options": [
-              {
-                "id": 26,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 27,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 28,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 29,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 30,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 7,
-            "questionText": "7.How attractive the business model of the Company would you think?{CN}7.公司业务模式吸引力如何？（4分为吸引力强，1分为吸引力弱）",
-            "type": 0,
-            "disIndex": 70,
-            "options": [
-              {
-                "id": 31,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 32,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 33,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 34,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 35,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 8,
-            "questionText": "8.According to you, how’s the quality of the Company’s historical financials?{CN}8.公司历史财务业绩质量？（4分为业绩好，1分为不好）",
-            "type": 0,
-            "disIndex": 80,
-            "options": [
-              {
-                "id": 36,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 37,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 38,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 39,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 40,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 9,
-            "questionText": "9.Would you think the cash flow of the Company is healthy?{CN}9.公司现金流是否健康？（4分为现金流很好，1分为不好）",
-            "type": 0,
-            "disIndex": 90,
-            "options": [
-              {
-                "id": 41,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 42,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 43,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 44,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 45,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 10,
-            "questionText": "10.How’s the Company’s competitive advantage? How distinct is the Company’s economic moat?{CN}10.所处竞争地位如何，壁垒及优势是否明显？（4分为优势极大，1分为混战/红海）",
-            "type": 0,
-            "disIndex": 100,
-            "options": [
-              {
-                "id": 46,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 47,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 48,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 49,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 50,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 11,
-            "questionText": "11.How’s the certainty of the Company’s future growth of revenue and profit?{CN}11.公司收入和利润未来增长性及确定性如何？（4分为增长性及确定性强，1分反之）",
-            "type": 0,
-            "disIndex": 110,
-            "options": [
-              {
-                "id": 51,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 52,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 53,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 54,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 55,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 12,
-            "questionText": "12.Is the Management excellent and reliable enough? Any conflict of interest? If it’s a controlled deal, is the new Management capable enough of taking over?{CN}12.管理层是否优秀可信任，利益冲突小，或者新的管理层是否有能力接管（针对控股交易）？（4分为优秀，1分反之）",
-            "type": 0,
-            "disIndex": 120,
-            "options": [
-              {
-                "id": 56,
-                "optionText": "4",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 57,
-                "optionText": "3",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 20
-              },
-              {
-                "id": 58,
-                "optionText": "2",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 59,
-                "optionText": "1",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 40
-              },
-              {
-                "id": 60,
-                "optionText": "NA, Please leave comment{CN}无法打分，请填写说明",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 50
-              }
-            ]
-          },
-          {
-            "id": 13,
-            "questionText": "Would you support to have this Project to move forward to the next stage?{CN}您认为此项目是否应当继续向下一阶段推进：",
-            "type": 1,
-            "disIndex": 130,
-            "options": [
-              {
-                "id": 61,
-                "optionText": "3 Support{CN}3 支持",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 10
-              },
-              {
-                "id": 62,
-                "optionText": "2 Support with conditions, please specify conditions{CN}2 有条件支持，并说明条件",
-                "score": 5,
-                "commentRequired": 1,
-                "disIndex": 20
-              },
-              {
-                "id": 63,
-                "optionText": "1 Against{CN}1反对",
-                "score": 5,
-                "commentRequired": 0,
-                "disIndex": 30
-              },
-              {
-                "id": 64,
-                "optionText": "Cannot reach a conclusion, please specify why{CN}无法判断，需说明理由",
-                "score": 0,
-                "commentRequired": 1,
-                "disIndex": 40
-              }
-            ]
-          }
-        ]
-      }
-    },
-    "userInstance": {
-      "id": 1,
-      "instanceId": 1,
-      "userId": "9B2CAB6BF98847C5B5D07CC483B3ED96",
-      "status": 0,
-      "lastModTime": "2019-09-06T01:00:59.125"
-    },
-    "userAnswers": {
-      "1": {
-        "id": 1,
-        "userInstanceId": 1,
-        "questionId": 1,
-        "optionId": 4
-      },
-      "2": {
-        "id": 2,
-        "userInstanceId": 1,
-        "questionId": 2,
-        "optionId": 8
-      },
-      "3": {
-        "id": 3,
-        "userInstanceId": 1,
-        "questionId": 3,
-        "optionId": 15,
-        "comment": "dsfasd"
-      },
-      "4": {
-        "id": 4,
-        "userInstanceId": 1,
-        "questionId": 4,
-        "optionId": 19
-      },
-      "5": {
-        "id": 5,
-        "userInstanceId": 1,
-        "questionId": 5,
-        "optionId": 23
-      },
-      "6": {
-        "id": 6,
-        "userInstanceId": 1,
-        "questionId": 6,
-        "optionId": 28
-      },
-      "7": {
-        "id": 7,
-        "userInstanceId": 1,
-        "questionId": 7,
-        "optionId": 32
-      },
-      "8": {
-        "id": 8,
-        "userInstanceId": 1,
-        "questionId": 8,
-        "optionId": 38
-      },
-      "9": {
-        "id": 9,
-        "userInstanceId": 1,
-        "questionId": 9,
-        "optionId": 42
-      },
-      "10": {
-        "id": 10,
-        "userInstanceId": 1,
-        "questionId": 10,
-        "optionId": 47
-      },
-      "11": {
-        "id": 11,
-        "userInstanceId": 1,
-        "questionId": 11,
-        "optionId": 52
-      },
-      "12": {
-        "id": 12,
-        "userInstanceId": 1,
-        "questionId": 12,
-        "optionId": 57
-      },
-      "13": {
-        "id": 13,
-        "userInstanceId": 1,
-        "questionId": 13,
-        "optionId": 62,
-        "comment": "sdfsadfdd"
-      }
-    }    
+    questionIndex:0,//当前题目的index
+    gradeInstance: {}   
   },
-  bindButtonTap: function (event) {
+
+  bindButtonTapNext: function(event) {
     var commentRequired = event.currentTarget.dataset.cr
     console.log("参数=" + commentRequired);
-    if (commentRequired ==1){
+    if (this.data.questionIndex == this.data.gradeInstance.ratingInstance.form.questions.length) {
+      wx.showToast({
+        title: '已到最后',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    this.setData({
+      questionIndex:this.data.questionIndex+1
+    })
+    this.questionIndex
+    if (commentRequired == 1) {
       alert("请填写comments！");
       return false;
     }
-    
+  },
+
+  bindButtonTapPrev: function (event) {
+    var commentRequired = event.currentTarget.dataset.cr
+    console.log("参数=" + commentRequired);
+    if (this.data.questionIndex==0){
+      wx.showToast({
+        title: '已到最前',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+    this.setData({
+      questionIndex: this.data.questionIndex - 1
+    })
+    this.questionIndex
+    if (commentRequired == 1) {
+      alert("请填写comments！");
+      return;
+    }
+  },
+
+  bindButtonTapSubmit: function (event) {
+    //向服务器提交答题情况
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    var total = data.ratingInstance.form.questions.length;
-  
+  onLoad: function(options) {
+    var that=this;
+
+    let ctoken = '';
+    try {
+      var value = wx.getStorageSync('ctoken')
+      if (value) {
+        ctoken = value;
+      }
+    } catch (e) {
+      // Do something when catch error
+    }
+
+    wx.showLoading({
+      title: '加载中',
+    })
+    
+    wx.request({
+      url: getApp().globalData.restUrl + `/rating/${1}`, //商品列表
+      header: {
+        CTOKEN: ctoken
+      },
+      data: {},
+      success: function (res) {
+        if (res.statusCode == 401) {
+          wx.hideLoading()
+          wx.navigateTo({
+            url: '../login/login',
+          })
+        }
+        else {
+          //绑定菜单数据
+          console.log('grade request:' + JSON.stringify(res.data));
+          //对数据进行清洗
+          var newGrades = {};
+          newGrades = Object.assign({}, res.data);
+          newGrades.ratingInstance.form.questions.map(function (item) {
+            let languages = app.getCNAndEn(item.questionText);
+            item.enText = languages[0];
+            item.cnText = languages[1];
+            item.options.map(function (optionItem) {
+              let optionLanguages = app.getCNAndEn(optionItem.optionText);
+              optionItem.enText = optionLanguages[0];
+              optionItem.cnText = optionLanguages[1];
+            })
+          });
+          that.setData({
+            gradeInstance: newGrades
+          })
+          wx.hideLoading()
+        }
+      }
+    })
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onReady: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
+  onHide: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
+  onUnload: function() {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
-  }
+  },
+
 })

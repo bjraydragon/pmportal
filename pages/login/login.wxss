@@ -1,7 +1,7 @@
 /* pages/login/login.wxss */
 page{
   height: 100%;
-  background-size:100%;myno
+  background-size:100%;
 }
  
 .container {
