@@ -5,13 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    projectList:[
-      {
-        "projectCode": "Aluminum",
-        "instanceId": 1,
-        "stage": "PB"
-      }
-    ],
+    projectList:[],
 
     images: [
       "../../images/project.png",

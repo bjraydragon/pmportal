@@ -39,14 +39,9 @@ Page({
     }
   },
   formSubmit: function(e) {
-    wx.showLoading({
-      // title: '登录中...',
-    })
-    console.log(`formsubmit:username=${e.detail.value.no} password=${e.detail.value.pwd}`)
-
     //请求服务器验证
     wx.request({
-      url: getApp().globalData.restUrl + '/bind', //商品列表
+      url: getApp().globalData.restUrl + '/bind', //用户登录
       header: {
         JSCODE: app.globalData.jscode,
       },
@@ -55,7 +50,15 @@ Page({
         password: e.detail.value.pwd
       },
       success: function(res) {
-        console.log('login:' + JSON.stringify(res));
+        var resObj = res.data;
+        if(resObj.code!=200){
+          wx.showToast({
+            title: resObj.errorMsg,
+            icon: 'none',
+            duration: 2000
+          })
+          return;
+        }
         let ctoken=res.data.CTOKEN;
         //将ctoken存入localstorage
         try {
