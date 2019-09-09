@@ -42,6 +42,7 @@ Page({
     wx.showLoading({
       // title: '登录中...',
     })
+    console.log(`formsubmit:username=${e.detail.value.no} password=${e.detail.value.pwd}`)
 
     //请求服务器验证
     wx.request({
@@ -50,8 +51,8 @@ Page({
         JSCODE: app.globalData.jscode,
       },
       data: {
-        username: "abc",
-        password: "123"
+        username: e.detail.value.no,
+        password: e.detail.value.pwd
       },
       success: function(res) {
         console.log('login:' + JSON.stringify(res));
@@ -71,46 +72,6 @@ Page({
     this.setData({
       disabled: true
     });
-    wx.request({
-      url: app.globalData.url.login, //仅为示例，并非真实的接口地址
-      data: {
-        no: e.detail.value.no,
-        pwd: e.detail.value.pwd
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success: function(res) {
-        console.log(res);
-        if (res.statusCode == 200) {
-          if (res.data.error == true) {
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'none',
-              duration: 2000
-            })
-          } else {
-            wx.setStorageSync('student', res.data.data);
-            wx.showToast({
-              title: res.data.msg,
-              icon: 'success',
-              duration: 2000
-            })
-            setTimeout(function() {
-              wx.switchTab({
-                url: '../teacher/teacher',
-              })
-            }, 2000)
-          }
-        } else {
-          wx.showToast({
-            title: '服务器出现错误',
-            icon: 'none',
-            duration: 2000
-          })
-        }
-      }
-    })
   },
   /**
    * 生命周期函数--监听页面加载
