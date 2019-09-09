@@ -50,24 +50,27 @@ Page({
         password: e.detail.value.pwd
       },
       success: function(res) {
-        var resObj = res.data;
-        if(resObj.code!=200){
-          wx.showToast({
-            title: resObj.errorMsg,
-            icon: 'none',
-            duration: 2000
-          })
-          return;
-        }
+        let resObj = res.data;        
         let ctoken=res.data.CTOKEN;
-        //将ctoken存入localstorage
-        try {
-          wx.setStorageSync('ctoken', ctoken)
-        } catch (e) { }
-        //跳转页面
-        wx.navigateTo({
-          url: '../menu/menu',
-        })
+        if(!ctoken){
+          if (resObj.code != 200) {
+            wx.showToast({
+              title: resObj.errorMsg,
+              icon: 'none',
+              duration: 2000
+            })
+            return;
+          }
+        }else{
+          //将ctoken存入localstorage
+          try {
+            wx.setStorageSync('ctoken', ctoken)
+          } catch (e) { }
+          //跳转页面
+          wx.navigateTo({
+            url: '../menu/menu',
+          })
+        }        
       }
     })
 
