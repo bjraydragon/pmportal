@@ -130,7 +130,7 @@ Page({
   bindMenuTap(event){
     let menuId = event.currentTarget.dataset.menuid;
     console.log(menuId);
-    if (menuId =="WXDEALLIST"){
+    if (menuId =="WXRATINGLIST"){
       wx.navigateTo({
         url: '../prjlist/prjlist',
       })

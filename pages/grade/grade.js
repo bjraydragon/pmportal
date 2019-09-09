@@ -7,7 +7,8 @@ Page({
    */
   data: {
     questionIndex:0,//当前题目的index
-    gradeInstance: {}   
+    gradeInstance: {},
+    userAnswers:[] 
   },
 
   /**
@@ -54,6 +55,7 @@ let projectid=1;
           console.log('grade request:' + JSON.stringify(res.data));
           //对数据进行清洗
           var newGrades = {};
+          var newUserAnswers=[];
           newGrades = Object.assign({}, res.data);
           newGrades.ratingInstance.form.questions.map(function (item) {
             let languages = app.getCNAndEn(item.questionText);
@@ -65,8 +67,13 @@ let projectid=1;
               optionItem.cnText = optionLanguages[1];
             })
           });
+          for (var key in newGrades.userAnswers) {
+            newUserAnswers.push(newGrades.userAnswers[key]);
+            //console.log(key + ':' + newGrades.userAnswers[key] + ":i=" + i);
+          }
           that.setData({
-            gradeInstance: newGrades
+            gradeInstance: newGrades,
+            userAnswers: newUserAnswers,
           })
           wx.hideLoading()
         }
@@ -134,14 +141,16 @@ let projectid=1;
    * 生命周期函数--监听页面卸载
    */
   onUnload: function() {    
-    //构造提交参数
-    var userAnswers = {};
+    console.log("onunload:" + JSON.stringify(this.data.gradeInstance.userAnswers));
     //向服务器提交答题情况
+    var answerDetail={};
+    answerDetail.userAnswers = this.data.gradeInstance.userAnswers;
+    answerDetail.instanceId=this.data.gradeInstance.instanceId;
     var ctoken = wx.getStorageSync('ctoken')    
     if (ctoken) {
       wx.request({
         url: getApp().globalData.restUrl + '/rating/save',
-        data: { "userAnswers": this.data.gradeInstance.userAnswers },
+        data: answerDetail,
         header: {
           CTOKEN: ctoken
         },
@@ -204,7 +213,6 @@ let projectid=1;
     this.setData({
       questionIndex: this.data.questionIndex + 1
     })
-    this.questionIndex
     if (commentRequired == 1) {
       alert("请填写comments！");
       return false;
@@ -225,7 +233,6 @@ let projectid=1;
     this.setData({
       questionIndex: this.data.questionIndex - 1
     })
-    this.questionIndex
     if (commentRequired == 1) {
       alert("请填写comments！");
       return;
@@ -279,11 +286,35 @@ let projectid=1;
   },
 
   radioChange: function (e) {
-    var optionId = e.detail.value[0];
+    var optionId = e.detail.value;
+    console.log("radioChange:" + optionId);
     var answerObj = this.data.gradeInstance.userAnswers;
     var value = answerObj['' + (this.data.questionIndex + 1) + ''];
     value.optionId = optionId;
-    value.userInstanceId = this.data.gradeInstance.instanceId
+    value.userInstanceId = this.data.gradeInstance.instanceId;
+
+    this.data.userAnswers[this.data.questionIndex].optionId = optionId;
+    var newUserAnswers=[];
+    this.data.userAnswers.map(function (item) {
+      newUserAnswers.push(item);
+    });
+
+    this.setData({
+      userAnswers: newUserAnswers
+    })
+
+
+    
+    console.log(JSON.stringify(this.data.userAnswers));
+
+    console.log("aaaaaa:"+this.data.userAnswers[this.data.questionIndex].optionId);
+    // var newGrades = {};
+    // newGrades = Object.assign({}, this.data.gradeInstance);
+    // (this.data.gradeInstance.userAnswers)['' + (this.data.questionIndex + 1) + ''].optionId = optionId;
+    // console.log(JSON.stringify(newGrades))
+    // this.setData({
+    //   gradeInstance: newGrades
+    // })
   },
 
 

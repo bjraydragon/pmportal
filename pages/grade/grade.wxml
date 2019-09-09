@@ -12,9 +12,10 @@
     <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].cnText}}</text>
     <!-- 题目 -->
     <radio-group class="radio-group" bindchange="radioChange" >
-      <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}" vx:if="{{commentRequired}}">
-        <radio value="{{item.id}}" checked="{{item.checked}}" />{{item.cnText}}
+      <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}">
+        <radio value="{{item.id}}" data-optionid="{{userAnswers[questionIndex].optionId}}"   data-itemid="{{item.id}}" data-questionIndex="{{questionIndex}}" checked="{{userAnswers[questionIndex].optionId==item.id}}" />{{item.cnText}}
       </label>
+      
     </radio-group>
     <textarea class="weui-textarea option-comment" placeholder="说明" placeholder-style="color:black;"  />
 </scroll-view>      
