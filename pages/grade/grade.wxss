@@ -28,7 +28,7 @@
 }
 
 .grade-title-name{
-  font-size: 4vw;
+  font-size: 3.5vw;
   font-weight:600;
   margin-left:3vw;
 }

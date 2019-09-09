@@ -6,8 +6,8 @@
       <view class="grade-header-right">{{questionIndex+1}}/{{gradeInstance.ratingInstance.form.questions.length}}</view>
     </view>
 
-<scroll-view scroll-y style="height: 70%;" class="carsale">
-    <text class="grade-title-name" decode='true'>{{gradeInstance.ratingInstance.form.name}}</text>
+<scroll-view scroll-y="true" style="height: 75vh;" class="carsale">
+    <text class="grade-title-name" decode='true'>{{gradeInstance.ratingInstance.project.projectCode}},{{gradeInstance.ratingInstance.project.stageLabel}},{{gradeInstance.ratingInstance.project.teamMembers}}</text>
     <view class="thin-line"></view>
     <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].cnText}}</text>
     <!-- 题目 -->
@@ -15,9 +15,10 @@
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}">
         <radio value="{{item.id}}" data-optionid="{{userAnswers[questionIndex].optionId}}"   data-itemid="{{item.id}}" data-questionIndex="{{questionIndex}}" checked="{{userAnswers[questionIndex].optionId==item.id}}" />{{item.cnText}}
       </label>
-      
-    </radio-group>
+      </radio-group>
+    
     <textarea class="weui-textarea option-comment" placeholder="说明" placeholder-style="color:black;"  />
+    
 </scroll-view>      
 
     <view class="button-sp-area">
