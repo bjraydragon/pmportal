@@ -1,7 +1,7 @@
 /* pages/login/login.wxss */
 page{
   height: 100%;
-  background-size:100%;
+  background-size:100%;  
 }
  
 .container {
@@ -38,7 +38,7 @@ page{
   width: 80vw;
   height: 8vh;
   margin: 0 auto;
-  border:1px solid rgb(69, 212, 76);
+  border:1px solid rgb(135, 0, 0);
   border-radius: 20rpx;
  
 }
@@ -49,7 +49,7 @@ page{
   width: 80vw;
   height: 8vh;
   margin: 0 auto;
-  border:1px solid rgb(69, 212, 76);
+  border:1px solid rgb(135, 0, 0);
   border-radius: 20rpx;
   margin-top: 5vh;
 }
@@ -66,7 +66,7 @@ page{
   line-height: 100rpx;
   margin-top: 35px;
   color: #fff;
-  background-color:#7e8ef0;
+  background-color: rgb(135, 0, 0);
   border: 0.1rpx solid #ccc;
   border-radius: 20rpx;
 }

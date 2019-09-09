@@ -1,1 +1,7 @@
 /* pages/prjlist/prjlist.wxss */
+.weui-media-box__title{
+  color: rgb(135, 0, 0);
+}
+.weui-panel__hd{
+  color: rgb(135, 0, 0);
+}

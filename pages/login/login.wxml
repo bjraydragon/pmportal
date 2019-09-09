@@ -27,7 +27,7 @@
 
       <!--按钮-->
       <view class="loginBtnView">
-        <button class="weui-btn loginBtn" type="primary" size="{{primarySize}}" form-type='submit' disabled='{{disabled}}'>登录</button>
+        <button class=" loginBtn"  size="{{primarySize}}" form-type='submit' disabled='{{disabled}}'>登录</button>
       </view>
     </form>
 

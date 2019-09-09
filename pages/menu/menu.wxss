@@ -8,3 +8,6 @@
   width: 30vw;
   height: 30vw;
 }
+.weui-grid__label{
+   color: rgb(135, 0, 0);
+}
