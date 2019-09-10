@@ -9,7 +9,9 @@ Page({
     questionIndex:0,//当前题目的index
     gradeInstance: {},
     userAnswers:[],
-    currentCommentChange:"" //如果不change 则要一直为空,只有change了才有值
+    currentCommentChange:"", //如果不change 则要一直为空,只有change了才有值
+    btnSubmit:"提交",
+    disabled:false
   },
 
   /**
@@ -70,7 +72,6 @@ let projectid=1;
           });
           for (var key in newGrades.userAnswers) {
             newUserAnswers.push(newGrades.userAnswers[key]);
-            //console.log(key + ':' + newGrades.userAnswers[key] + ":i=" + i);
           }
           that.setData({
             gradeInstance: newGrades,
@@ -100,7 +101,6 @@ let projectid=1;
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-    console.log("Enter onHide =====" );
     //构造提交参数
     var userAnswers = {};
     //向服务器提交答题情况
@@ -117,15 +117,13 @@ let projectid=1;
         },
         method: 'POST',
         success: function (res) {
-          console.log("save====="+JSON.stringify(res.data));
           if (res.statusCode == 500) {
             wx.showToast({
               title: res.errorMsg,
               icon: 'none',
               duration: 2000
             })
-          } else if (res.code == 200) {
-            
+          } else if (res.code == 200) {            
             wx.showToast({
               title: '恭喜您完成打分',
               icon: 'none',
@@ -144,8 +142,7 @@ let projectid=1;
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {    
-    console.log("onunload:" + JSON.stringify(this.data.gradeInstance.userAnswers));
+  onUnload: function() {  
     //存储comment
     this.saveComment();
     //向服务器提交答题情况
@@ -206,7 +203,6 @@ let projectid=1;
   },
 
   bindButtonTapNext: function (event) {
-    console.log("bindButtonTapNext");
     //存储comment
     let save_result = this.saveComment();
     if (!save_result && this.data.gradeInstance.ratingInstance.form.questions[this.data.questionIndex].commentRequired){
@@ -219,7 +215,6 @@ let projectid=1;
     }
 
     var commentRequired = event.currentTarget.dataset.cr
-    console.log("参数=" + commentRequired);
     if (this.data.questionIndex+1 == this.data.gradeInstance.ratingInstance.form.questions.length) {
       wx.showToast({
         title: '已到最后',
@@ -240,12 +235,10 @@ let projectid=1;
   },
 
   bindButtonTapPrev: function (event) {
-    console.log("bindButtonTapPrev");
     //存储comment
     this.saveComment();
 
     var commentRequired = event.currentTarget.dataset.cr
-    console.log("参数=" + commentRequired);
     if (this.data.questionIndex == 0) {
       wx.showToast({
         title: '已经是第一题',
@@ -322,6 +315,8 @@ let projectid=1;
               icon: 'none',
               duration: 5000
             })
+            btnSubmit="已提交";
+            disabled=true;
           }
         }
       })
@@ -334,7 +329,7 @@ let projectid=1;
 
   radioChange: function (e) {
     var optionId = e.detail.value;
-    console.log("radioChange:" + optionId);
+    
     var answerObj = this.data.gradeInstance.userAnswers;
     var value = answerObj['' + (this.data.questionIndex + 1) + ''];
     value.optionId = optionId;
@@ -350,9 +345,6 @@ let projectid=1;
       userAnswers: newUserAnswers
     })
 
-
-    
-    console.log(JSON.stringify(this.data.userAnswers));
   },
 
   //bind comment textarea when focus leave

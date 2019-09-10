@@ -16,6 +16,8 @@
   width:100vw;
   height:5vh;
   background-color: rgb(215, 247, 37);
+  color: #666;
+  font-size: 4.5vw;
 }
 
 .grade-header-left{

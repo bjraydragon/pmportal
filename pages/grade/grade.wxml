@@ -23,7 +23,7 @@
 
     <view class="button-sp-area">
       <button class="pre-btn" bindtap="bindButtonTapPrev">上一题</button>
-      <button class="sub-btn" bindtap="bindButtonTapSubmit">提交</button>
+      <button class="sub-btn" name="btnSubmit" disabled='{{disabled}}' bindtap="bindButtonTapSubmit">{{btnSubmit}}</button>
       <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">下一题</button>
     </view>
 
