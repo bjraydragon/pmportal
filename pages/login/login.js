@@ -93,7 +93,7 @@ Page({
     this.setData({
       disabled: false
     });
-    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 1 });
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') && 1 });
     wx.event.on('changeLanguage', this, this.setData({ 'language': wx.T.getLanguage() }));
     
 

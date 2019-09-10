@@ -25,7 +25,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     //翻译
-    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 1 });
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') && 1 });
     this.setLanguage();
     wx.event.on('languageChanged', this, this.setLanguage);
     //尝试获取menu,如果不能正常获取,则转入登录页面
@@ -172,7 +172,7 @@ Page({
 
     wx.setStorage({
       key: 'langIndex',
-      data: this.data.langIndex
+      data: index ? 1 : 0
     })
   },
 })

@@ -9,7 +9,7 @@
 <scroll-view scroll-y="true" style="height: 75vh;" class="carsale">
     <text class="grade-title-name" decode='true'>{{gradeInstance.ratingInstance.project.projectCode}},{{gradeInstance.ratingInstance.project.stageLabel}},{{gradeInstance.ratingInstance.project.teamMembers}}</text>
     <view class="thin-line"></view>
-    <text class="grade-title-question" decode='true'>{{langIndex?gradeInstance.ratingInstance.form.questions[questionIndex].cnText:gradeInstance.ratingInstance.form.questions[questionIndex].cnText}}</text>
+    <text class="grade-title-question" decode='true'>{{langIndex?gradeInstance.ratingInstance.form.questions[questionIndex].cnText:gradeInstance.ratingInstance.form.questions[questionIndex].enText}}</text>
     <!-- 题目 -->
     <radio-group class="radio-group" bindchange="radioChange" >
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}">

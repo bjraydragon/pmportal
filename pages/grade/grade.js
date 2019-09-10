@@ -22,7 +22,7 @@ Page({
   onLoad: function(options) {
     var that=this;
     //翻译
-    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 1 });
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') && 1 });
     wx.event.on('changeLanguage', this, this.setData({ 'language': wx.T.getLanguage() }));
     let ctoken = '';
     try {
@@ -77,6 +77,7 @@ let projectid=1;
           for (var key in newGrades.userAnswers) {
             newUserAnswers.push(newGrades.userAnswers[key]);
           }
+          console.log("newGrades:"+JSON.stringify(newGrades));
           that.setData({
             gradeInstance: newGrades,
             userAnswers: newUserAnswers,
@@ -209,7 +210,8 @@ let projectid=1;
   bindButtonTapNext: function (event) {
     //存储comment
     let save_result = this.saveComment();
-    if (!save_result && this.data.gradeInstance.ratingInstance.form.questions[this.data.questionIndex].commentRequired){
+    this.checkCommentRequired();
+    if (!save_result && this.checkCommentRequired()) {
       wx.showToast({
         title: '请填写说明',
         icon: 'none',
@@ -262,12 +264,23 @@ let projectid=1;
     }
   },
 
+  checkCommentRequired:function(){
+    this.data.gradeInstance.ratingInstance.form.questions[this.data.questionIndex].options.map(function (optionItem) {
+      if(optionItem.commentRequired==1){
+        return true;
+      }
+    })
+
+    return false;
+  },
+
   bindButtonTapSubmit: function (event) {
     var that=this;
     //存储comment
     //存储comment
     let save_result = this.saveComment();
-    if (!save_result && this.data.gradeInstance.ratingInstance.form.questions[this.data.questionIndex].commentRequired) {
+    this.checkCommentRequired();
+    if (!save_result && this.checkCommentRequired()) {
       wx.showToast({
         title: '请填写说明',
         icon: 'none',
