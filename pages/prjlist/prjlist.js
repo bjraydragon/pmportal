@@ -1,4 +1,5 @@
 // pages/prjlist/prjlist.js
+const app = getApp()
 Page({
 
   /**
@@ -11,7 +12,9 @@ Page({
       "../../images/project.png",
       "../../images/project2.png",
       "../../images/project3.png",
-    ]
+    ],
+    language: {},
+    langIndex: 1
   },
 
   /**
@@ -19,6 +22,9 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    //翻译
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 1 });
+    wx.event.on('changeLanguage', this, this.setData({ 'language': wx.T.getLanguage() }));
     //get rating
     let ctoken = '';
     try {
@@ -47,6 +53,16 @@ Page({
           console.log('prjlist request:' + JSON.stringify(res.data));
           var newList = [];
           res.data.map(function (item) {
+            let allCode = item.projectCode;
+            let languageCode = app.getCNAndEn(allCode);
+            item.enProjectCode = languageCode[0];
+            item.cnProjectCode = languageCode[1];
+
+            let allStage = item.stage;
+            let languageStage = app.getCNAndEn(allStage);
+            item.enStage = languageStage[0];
+            item.cnStage = languageStage[1];
+
             newList.push(item);
           });
           that.setData({

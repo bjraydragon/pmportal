@@ -1,4 +1,6 @@
 // pages/menu/menu.js
+import event from '../../utils/event.js';
+
 const app = getApp()
 
 Page({
@@ -12,7 +14,9 @@ Page({
       "../../images/menu.png", 
       "../../images/menu2.png", 
       "../../images/menu3.png",
-    ]
+    ],
+    language: {},
+    langIndex: 1
   },
 
   /**
@@ -20,6 +24,10 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+    //翻译
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 1 });
+    this.setLanguage();
+    wx.event.on('languageChanged', this, this.setLanguage);
     //尝试获取menu,如果不能正常获取,则转入登录页面
     //请求menu列表
     wx.showLoading({
@@ -142,5 +150,29 @@ Page({
         duration: 2000
       })
     }
-  }
+  },
+
+  setLanguage() {
+    console.log("language:" + wx.T.getLanguage());
+    this.setData({
+      language: wx.T.getLanguage()
+    });
+  },
+
+  //just for translation
+  switchLanguageChange(e) {
+    let index = e.detail.value;
+    console.log(JSON.stringify(e));
+    this.setData({
+      langIndex: index?1:0
+    });
+    wx.T.setLocaleByIndex(index ? 1 : 0);
+    this.setLanguage();
+    event.emit('languageChanged');
+
+    wx.setStorage({
+      key: 'langIndex',
+      data: this.data.langIndex
+    })
+  },
 })

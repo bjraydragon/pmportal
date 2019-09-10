@@ -9,7 +9,9 @@ Page({
     questionIndex:0,//当前题目的index
     gradeInstance: {},
     userAnswers:[],
-    currentCommentChange:"" //如果不change 则要一直为空,只有change了才有值
+    currentCommentChange:"", //如果不change 则要一直为空,只有change了才有值
+    language: {},
+    langIndex: 1
   },
 
   /**
@@ -17,7 +19,9 @@ Page({
    */
   onLoad: function(options) {
     var that=this;
-
+    //翻译
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 1 });
+    wx.event.on('changeLanguage', this, this.setData({ 'language': wx.T.getLanguage() }));
     let ctoken = '';
     try {
       var value = wx.getStorageSync('ctoken')

@@ -2,29 +2,29 @@
 <view class="page__hd" wx:if="{{gradeInstance.ratingInstance}}">
 
     <view class="grade-header">
-      <view class="grade-header-left">打分进度</view>
+      <view class="grade-header-left">{{language.scoreProgress}}</view>
       <view class="grade-header-right">{{questionIndex+1}}/{{gradeInstance.ratingInstance.form.questions.length}}</view>
     </view>
 
 <scroll-view scroll-y="true" style="height: 75vh;" class="carsale">
     <text class="grade-title-name" decode='true'>{{gradeInstance.ratingInstance.project.projectCode}},{{gradeInstance.ratingInstance.project.stageLabel}},{{gradeInstance.ratingInstance.project.teamMembers}}</text>
     <view class="thin-line"></view>
-    <text class="grade-title-question" decode='true'>{{gradeInstance.ratingInstance.form.questions[questionIndex].cnText}}</text>
+    <text class="grade-title-question" decode='true'>{{langIndex?gradeInstance.ratingInstance.form.questions[questionIndex].cnText:gradeInstance.ratingInstance.form.questions[questionIndex].cnText}}</text>
     <!-- 题目 -->
     <radio-group class="radio-group" bindchange="radioChange" >
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}">
-        <radio value="{{item.id}}" data-optionid="{{userAnswers[questionIndex].optionId}}"   data-itemid="{{item.id}}" data-questionIndex="{{questionIndex}}" checked="{{userAnswers[questionIndex].optionId==item.id}}" />{{item.cnText}}
+        <radio value="{{item.id}}" data-optionid="{{userAnswers[questionIndex].optionId}}"   data-itemid="{{item.id}}" data-questionIndex="{{questionIndex}}" checked="{{userAnswers[questionIndex].optionId==item.id}}" />{{langIndex?item.enText:item.cnText}}
       </label>
       </radio-group>
     
-    <textarea class="weui-textarea option-comment" placeholder="说明" placeholder-style="color:black;"  value="{{userAnswers[questionIndex].comment}}" bindinput="bindTextAreaInput"  />
+    <textarea class="weui-textarea option-comment" placeholder="{{langIndex?'comment':'说明'}}" placeholder-style="color:black;"  value="{{userAnswers[questionIndex].comment}}" bindinput="bindTextAreaInput"  />
     
 </scroll-view>      
 
     <view class="button-sp-area">
-      <button class="pre-btn" bindtap="bindButtonTapPrev">上一题</button>
-      <button class="sub-btn" bindtap="bindButtonTapSubmit">提交</button>
-      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">下一题</button>
+      <button class="pre-btn" bindtap="bindButtonTapPrev">{{language.previewQuestion}}</button>
+      <button class="sub-btn" bindtap="bindButtonTapSubmit">{{language.submit}}</button>
+      <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">{{language.nextQuestion}}</button>
     </view>
 
 

@@ -1,7 +1,7 @@
 {
   "pages": [ 
-    "pages/login/login",   
-    "pages/menu/menu",           
+    "pages/menu/menu",
+    "pages/login/login",             
     "pages/grade/grade",
     "pages/prjlist/prjlist",
     "pages/index/index",
@@ -10,7 +10,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "CDH PMPortal",
+    "navigationBarTitleText": "CDH PM Portal",
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json"

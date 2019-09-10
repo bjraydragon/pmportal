@@ -2,15 +2,15 @@
 <view class="page">
   <view class="page__bd">
     <view class="weui-panel weui-panel_access">
-      <view class="weui-panel__hd">未打分项目列表</view>
+      <view class="weui-panel__hd">{{language.projectTitle}}</view>
       <view class="weui-panel__bd">
         <navigator data-projectid="{{item.instanceId}}" catchtap='bindPrjlistTap' url="" class="weui-media-box weui-media-box_appmsg" hover-class="weui-cell_active" wx:for="{{projectList}}">
           <view class="weui-media-box__hd weui-media-box__hd_in-appmsg">
             <image class="weui-media-box__thumb" src="{{images[0]}}"/>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{item.projectCode}}</view>
-            <view class="weui-media-box__desc">{{item.stage}}</view>
+            <view class="weui-media-box__title">{{langIndex?item.enProjectCode:item.cnProjectCode}}</view>
+            <view class="weui-media-box__desc">{{langIndex?item.enStage:item.cnStage}}</view>
           </view>
         </navigator>
       </view>
