@@ -81,3 +81,14 @@ page{
 .center{
     text-align: center;
 }
+.login-Hint{
+  font-size: 10px;
+  width:100%;
+  height: 100rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: grey;
+}
+

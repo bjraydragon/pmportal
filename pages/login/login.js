@@ -10,7 +10,9 @@ Page({
     pwd: '',
     noinput: false,
     pwdinput: false,
+    translateList: {},
   },
+  
   noinput: function(e) {
     this.setData({
       no: e.detail.value
@@ -87,6 +89,9 @@ Page({
     this.setData({
       disabled: false
     });
+    this.translateLanguage();
+    
+
     var student = wx.getStorageSync('student');
     if (typeof(student) == 'object' && student.no != '' && student.classid != '') {
       wx.switchTab({
@@ -150,5 +155,18 @@ Page({
    */
   onShareAppMessage: function() {
 
+  },
+
+  //just for translation
+  translateLanguage:function(){
+    //buttonString: (app.getCNAndEn("Bind{CN}绑定"))[0],
+    let newTranslateList={};
+    newTranslateList.placeholderUsername = app.getCNAndEn("Please input your name{CN}请输入用户名")[app.globalData.languageNow];
+    newTranslateList.placeholderPassWord = app.getCNAndEn("Please input your passwd{CN}请输入密码")[app.globalData.languageNow];
+    newTranslateList.bindButton = app.getCNAndEn("Bind{CN}绑定")[app.globalData.languageNow];
+    newTranslateList.footText = app.getCNAndEn("For internal use only, Please use your company account to bind.{CN}仅供内部员工使用，请使用公司账户进行关联")[app.globalData.languageNow];
+    this.setData({
+      translateList: newTranslateList
+    })
   }
 })

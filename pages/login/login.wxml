@@ -11,7 +11,7 @@
         <view class="weui-cell weui-cell_input">
           <image class="nameImage" src="/images/name.png"></image>
           <view class="weui-cell__bd">
-            <input class="weui-input" name="no" bindinput="noinput" value='{{no}}' placeholder="请输入用户名"/>
+            <input class="weui-input" name="no" bindinput="noinput" value='{{no}}' placeholder="{{translateList.placeholderUsername}}"/>
           </view>
         </view>
       </view>
@@ -20,16 +20,17 @@
         <view class="weui-cell weui-cell_input">
           <image class="nameImage" src="/images/key.png"></image>
           <view class="weui-cell__bd">
-            <input class="weui-input" type="password" name="pwd" bindinput="pwdinput" placeholder="请输入密码" value='{{pwd}}' />
+            <input class="weui-input" type="password" name="pwd" bindinput="pwdinput" placeholder="{{translateList.placeholderPassWord}}" value='{{pwd}}' />
           </view>
         </view>
       </view>
 
       <!--按钮-->
       <view class="loginBtnView">
-        <button class=" loginBtn"  size="{{primarySize}}" form-type='submit' disabled='{{disabled}}'>登录</button>
+        <button class=" loginBtn"  size="{{primarySize}}" form-type='submit' disabled='{{disabled}}'>{{translateList.bindButton}}</button>
       </view>
     </form>
-
+    <view  class="login-Hint">
+    <text>{{translateList.footText}}</text></view>
   </view>
 </view>

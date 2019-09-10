@@ -56,6 +56,7 @@ App({
   globalData: {
     userInfo: null,
     restUrl: "https://test123.saikul.com",//"https://wxapp-test.cdhfund.com",
-    jscode:""
+    jscode:"",
+    languageNow:1
   }
 })
