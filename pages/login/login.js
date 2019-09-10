@@ -55,8 +55,10 @@ Page({
       },
       success: function(res) {
         let resObj = res.data;   
-        console.log("login respond:"+JSON.stringify(resObj));     
+        console.log("login respond:"+JSON.stringify(resObj));
+        console.log("jscode=="+app.globalData.jscode);  
         let ctoken=res.data.CTOKEN;
+        
         if(!ctoken){
           if (resObj.code != 200) {
             wx.showToast({
