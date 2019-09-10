@@ -12,8 +12,8 @@ Page({
     currentCommentChange:"", //如果不change 则要一直为空,只有change了才有值
     language: {},
     langIndex: 1,
-    btnSubmit:"提交",
-    disabled:false
+    submited:false,
+    submitButtonDisabled:false,
   },
 
   /**
@@ -263,6 +263,7 @@ let projectid=1;
   },
 
   bindButtonTapSubmit: function (event) {
+    var that=this;
     //存储comment
     //存储comment
     let save_result = this.saveComment();
@@ -319,8 +320,11 @@ let projectid=1;
               icon: 'none',
               duration: 5000
             })
-            btnSubmit="已提交";
-            disabled=true;
+            that.setData({
+              submited:true,
+              submitButtonDisabled:true
+            })
+            
           }
         }
       })
@@ -332,6 +336,7 @@ let projectid=1;
   },
 
   radioChange: function (e) {
+    this.saveComment();
     var optionId = e.detail.value;
     
     var answerObj = this.data.gradeInstance.userAnswers;

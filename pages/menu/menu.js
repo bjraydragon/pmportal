@@ -52,7 +52,7 @@ Page({
       success: function (res) {
         if (res.statusCode == 401) {
           wx.hideLoading()
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../login/login',
           })
         }

@@ -12,7 +12,8 @@ export default {
     'comment': 'comment',//说明
     'previewQuestion': 'preview',//上一题
     'nextQuestion':'next',//下一题
-    'submit': 'submit'//提交
+    'submit': 'submit',//提交
+    'submited': 'submited'//已提交
   },
 
   'cn': {
@@ -28,6 +29,7 @@ export default {
     'comment': '说明',
     'previewQuestion': '上一题',
     'nextQuestion': '下一题',
-    'submit': '提交'
+    'submit': '提交',
+    'submited':'已提交'
   }
 }

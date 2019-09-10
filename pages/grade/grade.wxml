@@ -13,7 +13,7 @@
     <!-- 题目 -->
     <radio-group class="radio-group" bindchange="radioChange" >
       <label class="radio" wx:for="{{gradeInstance.ratingInstance.form.questions[questionIndex].options}}">
-        <radio value="{{item.id}}" data-optionid="{{userAnswers[questionIndex].optionId}}"   data-itemid="{{item.id}}" data-questionIndex="{{questionIndex}}" checked="{{userAnswers[questionIndex].optionId==item.id}}" />{{langIndex?item.enText:item.cnText}}
+        <radio value="{{item.id}}" data-optionid="{{userAnswers[questionIndex].optionId}}"   data-itemid="{{item.id}}" data-questionIndex="{{questionIndex}}" checked="{{userAnswers[questionIndex].optionId==item.id}}" />{{langIndex?item.cnText:item.enText}}
       </label>
       </radio-group>
     
@@ -23,7 +23,7 @@
 
     <view class="button-sp-area">
       <button class="pre-btn" bindtap="bindButtonTapPrev">{{language.previewQuestion}}</button>
-      <button class="sub-btn" bindtap="bindButtonTapSubmit">{{language.submit}}</button>
+      <button class="sub-btn" disabled="{{submitButtonDisabled}}" bindtap="bindButtonTapSubmit">{{submited?language.submited:language.submit}}</button>
       <button class="next-btn" bindtap="bindButtonTapNext" data-cr='{{gradeInstance.ratingInstance.form.questions[questionIndex].options[0].commentRequired}}' data-optionId="gradeInstance.ratingInstance.form.questions[questionIndex].options[0].id">{{language.nextQuestion}}</button>
     </view>
 
