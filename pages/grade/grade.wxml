@@ -17,7 +17,7 @@
       </label>
       </radio-group>
     
-    <textarea class="weui-textarea option-comment" placeholder="说明" placeholder-style="color:black;"  />
+    <textarea class="weui-textarea option-comment" placeholder="说明" placeholder-style="color:black;"  value="{{userAnswers[questionIndex].comment}}" bindinput="bindTextAreaInput"  />
     
 </scroll-view>      
 

@@ -50,7 +50,8 @@ Page({
         password: e.detail.value.pwd
       },
       success: function(res) {
-        let resObj = res.data;        
+        let resObj = res.data;   
+        console.log("login respond:"+JSON.stringify(resObj));     
         let ctoken=res.data.CTOKEN;
         if(!ctoken){
           if (resObj.code != 200) {

@@ -8,7 +8,8 @@ Page({
   data: {
     questionIndex:0,//当前题目的index
     gradeInstance: {},
-    userAnswers:[] 
+    userAnswers:[],
+    currentCommentChange:"" //如果不change 则要一直为空,只有change了才有值
   },
 
   /**
@@ -103,11 +104,14 @@ let projectid=1;
     //构造提交参数
     var userAnswers = {};
     //向服务器提交答题情况
+    var answerDetail = {};
+    answerDetail.userAnswers = this.data.gradeInstance.userAnswers;
+    answerDetail.instanceId = this.data.gradeInstance.instanceId;
     var ctoken = wx.getStorageSync('ctoken')
     if (ctoken) {
       wx.request({
         url: getApp().globalData.restUrl + '/rating/save',
-        data: { "userAnswers": this.data.gradeInstance.ratingInstance.userAnswers },
+        data: answerDetail,
         header: {
           CTOKEN: ctoken
         },
@@ -142,6 +146,8 @@ let projectid=1;
    */
   onUnload: function() {    
     console.log("onunload:" + JSON.stringify(this.data.gradeInstance.userAnswers));
+    //存储comment
+    this.saveComment();
     //向服务器提交答题情况
     var answerDetail={};
     answerDetail.userAnswers = this.data.gradeInstance.userAnswers;
@@ -158,7 +164,7 @@ let projectid=1;
         success: function (res) {          
           if (res.statusCode == 500) {
             wx.showToast({
-              title: res.errorMsg,
+              title: JSON.stringify(res.errorMsg),
               icon: 'none',
               duration: 2000
             })
@@ -200,6 +206,18 @@ let projectid=1;
   },
 
   bindButtonTapNext: function (event) {
+    console.log("bindButtonTapNext");
+    //存储comment
+    let save_result = this.saveComment();
+    if (!save_result && this.data.gradeInstance.ratingInstance.form.questions[this.data.questionIndex].commentRequired){
+      wx.showToast({
+        title: '请填写说明',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
+
     var commentRequired = event.currentTarget.dataset.cr
     console.log("参数=" + commentRequired);
     if (this.data.questionIndex+1 == this.data.gradeInstance.ratingInstance.form.questions.length) {
@@ -210,6 +228,8 @@ let projectid=1;
       })
       return;
     }
+    //重置状态
+    this.data.currentCommentChange="";
     this.setData({
       questionIndex: this.data.questionIndex + 1
     })
@@ -220,6 +240,10 @@ let projectid=1;
   },
 
   bindButtonTapPrev: function (event) {
+    console.log("bindButtonTapPrev");
+    //存储comment
+    this.saveComment();
+
     var commentRequired = event.currentTarget.dataset.cr
     console.log("参数=" + commentRequired);
     if (this.data.questionIndex == 0) {
@@ -230,6 +254,8 @@ let projectid=1;
       })
       return;
     }
+    //重置状态
+    this.data.currentCommentChange = "";
     this.setData({
       questionIndex: this.data.questionIndex - 1
     })
@@ -240,11 +266,28 @@ let projectid=1;
   },
 
   bindButtonTapSubmit: function (event) {
+    //存储comment
+    //存储comment
+    let save_result = this.saveComment();
+    if (!save_result && this.data.gradeInstance.ratingInstance.form.questions[this.data.questionIndex].commentRequired) {
+      wx.showToast({
+        title: '请填写说明',
+        icon: 'none',
+        duration: 2000
+      })
+      return;
+    }
     //构造提交参数
     var userAnswers = {};
     //先判断题目是否完全答完,如果没有则提示请答完再提交
+    let finished=true;
+    this.data.userAnswers.map(function (item) {
+      if(item.optionId==undefined){
+        finished=false;
+      }
+    });
     //先简单判断一下
-    if (this.data.questionIndex < 12) {
+    if (!finished) {
       wx.showToast({
         title: '请完成所有题目再提交!',
         icon: 'none',
@@ -253,23 +296,27 @@ let projectid=1;
       return;
     }
     //向服务器提交答题情况
+    var answerDetail = {};
+    answerDetail.userAnswers = this.data.gradeInstance.userAnswers;
+    answerDetail.instanceId = this.data.gradeInstance.instanceId;
     var ctoken = wx.getStorageSync('ctoken')
     if (ctoken) {
       wx.request({
         url: getApp().globalData.restUrl + '/rating/submit',
-        data: { "userAnswers": this.data.gradeInstance.ratingInstance.userAnswers },
+        data: answerDetail,
         header: {
           CTOKEN: ctoken
         },
         method: 'POST',
         success: function (res) {
+          console.log("submit result:"+JSON.stringify(res));
           if (res.statusCode == 500) {
             wx.showToast({
-              title: res.errorMsg,
+              title: JSON.stringify(res.errorMsg),
               icon: 'none',
               duration: 2000
             })
-          } else if (res.code == 200) {
+          } else if (res.statusCode == 200) {
             wx.showToast({
               title: '恭喜您完成打分',
               icon: 'none',
@@ -306,16 +353,38 @@ let projectid=1;
 
     
     console.log(JSON.stringify(this.data.userAnswers));
-
-    console.log("aaaaaa:"+this.data.userAnswers[this.data.questionIndex].optionId);
-    // var newGrades = {};
-    // newGrades = Object.assign({}, this.data.gradeInstance);
-    // (this.data.gradeInstance.userAnswers)['' + (this.data.questionIndex + 1) + ''].optionId = optionId;
-    // console.log(JSON.stringify(newGrades))
-    // this.setData({
-    //   gradeInstance: newGrades
-    // })
   },
+
+  //bind comment textarea when focus leave
+  bindTextAreaInput:function(e){
+    console.log("bindTextAreaInput:"+e.detail.value+"questionIndex:"+this.data.questionIndex)
+    this.data.currentCommentChange=e.detail.value;   
+  },
+  
+  //for the reason of questionIndex change when next or previous
+  //we should call this func before next or previous for the right questionId
+  saveComment:function(){
+    if (this.data.currentCommentChange == ""){
+      return 0;
+    }
+    var answerObj = this.data.gradeInstance.userAnswers;
+    var value = answerObj['' + (this.data.questionIndex + 1) + ''];
+    value.comment = this.data.currentCommentChange;
+    console.log(JSON.stringify(answerObj));
+    //将comment存入数据结构中，并且要触发渲染？
+    this.data.userAnswers[this.data.questionIndex].comment = this.data.currentCommentChange;
+    console.log(JSON.stringify(this.data.userAnswers));
+    var newUserAnswers = [];
+    this.data.userAnswers.map(function (item) {
+      newUserAnswers.push(item);
+    });
+
+    this.setData({
+      userAnswers: newUserAnswers
+    })
+
+    return 1;
+  }
 
 
 })
