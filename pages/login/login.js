@@ -74,7 +74,7 @@ Page({
             wx.setStorageSync('ctoken', ctoken)
           } catch (e) { }
           //跳转页面
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../menu/menu',
           })
         }        
@@ -95,14 +95,7 @@ Page({
     });
     this.setData({ 'langIndex': wx.getStorageSync('langIndex') && 1 });
     wx.event.on('changeLanguage', this, this.setData({ 'language': wx.T.getLanguage() }));
-    
-
-    var student = wx.getStorageSync('student');
-    if (typeof(student) == 'object' && student.no != '' && student.classid != '') {
-      wx.switchTab({
-        url: '../teacher/teacher',
-      })
-    }
+  
   },
 
   /**

@@ -14,7 +14,7 @@ Page({
       "../../images/project3.png",
     ],
     language: {},
-    langIndex: 1
+    langIndex: 0
   },
 
   /**
@@ -23,7 +23,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     //翻译
-    this.setData({ 'langIndex': wx.getStorageSync('langIndex') && 1 });
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 0 });
     wx.event.on('changeLanguage', this, this.setData({ 'language': wx.T.getLanguage() }));
     //get rating
     let ctoken = '';

@@ -16,7 +16,7 @@ Page({
       "../../images/menu3.png",
     ],
     language: {},
-    langIndex: 1
+    langIndex: 0
   },
 
   /**
@@ -25,7 +25,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     //翻译
-    this.setData({ 'langIndex': wx.getStorageSync('langIndex') && 1 });
+    this.setData({ 'langIndex': wx.getStorageSync('langIndex') || 0 });
     this.setLanguage();
     wx.event.on('languageChanged', this, this.setLanguage);
     //尝试获取menu,如果不能正常获取,则转入登录页面

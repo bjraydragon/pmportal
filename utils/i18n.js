@@ -1,7 +1,7 @@
 let T = {
   locale: null,
   locales: {},           //语言包内容
-  langCode: ['en', 'cn']
+  langCode: ['cn', 'en']
 }
 
 T.registerLocale = function (locales) {
@@ -13,6 +13,7 @@ T.setLocale = function (code) {
 }
 
 T.setLocaleByIndex = function (index) {
+  console.log("T.setLocaleByIndex:"+index);
   T.setLocale(T.langCode[index]);
 }
 
