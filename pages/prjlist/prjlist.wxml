@@ -9,8 +9,8 @@
             <image class="weui-media-box__thumb" src="{{images[0]}}"/>
           </view>
           <view class="weui-media-box__bd weui-media-box__bd_in-appmsg">
-            <view class="weui-media-box__title">{{langIndex?item.enProjectCode:item.cnProjectCode}}</view>
-            <view class="weui-media-box__desc">{{langIndex?item.enStage:item.cnStage}}</view>
+            <view class="weui-media-box__title">{{langIndex?item.enProjectCode:item.cnProjectCode}}-{{langIndex?item.enStage:item.cnStage}}</view>
+            <view class="weui-media-box__desc">{{item.accountName}}</view>
           </view>
         </navigator>
       </view>

@@ -323,7 +323,7 @@ let projectid=1;
           console.log("submit result:"+JSON.stringify(res));
           if (res.statusCode == 500) {
             wx.showToast({
-              title: JSON.stringify(res.errorMsg),
+              title: (app.getCNAndEn(res.data.errorMsg))[that.data.langIndex==0?1:0],
               icon: 'none',
               duration: 2000
             })

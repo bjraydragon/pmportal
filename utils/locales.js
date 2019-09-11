@@ -7,7 +7,7 @@ export default {
     'footText':'For internal use only, Please use your company account to bind',
     'language': 'language',
     'languageType': '切换到中文',
-    'projectTitle': 'Unscored project list',//未打分项目列表
+    'projectTitle': 'Pending rating deals',//未打分项目列表
     'scoreProgress': 'Scoring progress',//打分进度
     'comment': 'comment',//说明
     'previewQuestion': 'preview',//上一题
