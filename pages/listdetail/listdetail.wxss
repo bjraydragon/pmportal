@@ -1,0 +1,64 @@
+html,body{
+    width: 100vw;
+    
+    overflow: auto;
+}
+
+.listdetail-container{
+    width: 100vw;
+   display: block;
+    overflow: auto;
+    line-height: 10rpx;
+    
+   
+}
+
+.weui-form-preview__items{
+
+    word-wrap:break-word;
+    
+    text-align: justify;
+
+}
+.swiper-tab{
+    width: 100%;
+    border-bottom: 2rpx solid #777777;
+    text-align: center;
+    line-height: 80rpx;
+    display: flex;
+    overflow: auto;
+   
+   
+  
+   }
+   .meta-title{
+       width: 100vw;
+       color: white;
+       background:#074578 ;
+   }
+   .swiper-tab-list{
+    font-size: 30rpx;
+    display: inline-block;
+    width: 20%;
+    color: #777777;
+   
+     
+   }
+   .on{
+    color:  blue;
+    border-bottom: 5rpx solid blue;
+   }
+   .swiper-box{
+    display: block;
+   
+    width: 100vw;
+    overflow: auto;
+   }
+   .swiper-box view{
+    
+   }
+   .page{
+       width: 100vw;
+       height: 100vh;
+       overflow: auto;
+   }
