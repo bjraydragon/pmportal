@@ -7,6 +7,7 @@ Page({
         events:[],
         fundRaising:[],
         invested:[],
+        forid:null,
        
         list: [{
           "text": "对话",
@@ -25,6 +26,7 @@ Page({
     onReady:function(){
       var that=this; 
       console.log(123);
+    
       console.log(that.data.Listdetailarr)
       
     },
@@ -35,8 +37,11 @@ Page({
         var that=this; 
         console.log(that.data.Listdetailarr)
       
-        let id=options.id
-        console.log(id);
+        let id=options.id  
+        that.forid=options.id 
+        console.log("传入的新id");
+        console.log(id); 
+       
         wx.getSystemInfo({
           success: function (res) {
             that.setData({
@@ -47,14 +52,15 @@ Page({
           }
         });
         wx.request({
-            url: 'https://test123.saikul.com/irdata/company/id', 
+            url: 'https://test123.saikul.com/irdata/company/'+that.forid, 
             data: {
-                
+              
             },
             header: {
               'content-type': 'application/json' // 默认值
             },
             success: function(res) {
+              console.log("详细")
               console.log(res.data);
               that.setData({
                 Listdetailarr:res.data,
@@ -90,6 +96,8 @@ Page({
   cateTab:function(event){
     var index=event.currentTarget.dataset.index;
     this.cateid=event.currentTarget.dataset.id;
+    console.log("每一次变化的请求")
+    console.log(this.cateid)
     //根据id请求相应的接口,返回对应的数据
     wx.request({
       url: ':http://xxx.com/category/'+this.cateid,
