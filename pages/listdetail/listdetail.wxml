@@ -116,11 +116,19 @@
                 
                  <view class="weui-form-preview__items" style="line-height: 30rpx;font-weight:500" >
                     
-                    <label class="weui-form-preview__value">{{item.subject}}</label>
+                    <label class="weui-form-preview__value">
+                   
+                    
+                    {{
+                         item.subject
+                        
+                        
+                        
+                       }}</label>
                 </view>
                 <view class="weui-form-preview__items" style="line-height: 30rpx;" >
                     
-                    <label class="weui-form-preview__value">{{item.content}}</label>
+                    <label class="weui-form-preview__value">{{'<view>'+item.content+'</view>'}}</label>
                 </view>
                 <view class="weui-form-preview__item">
                     <label class="weui-form-preview__label">Date</label>
